@@ -3,95 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GoalPro ULTIMATE v15 - 190 Tournaments</title>
+<title>GoalPro ULTIMATE v18</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root{ --primary:#0047AB; --accent:#FFB800; --bg:#050811; --card:#0B1120; --text:#F8FAFC; --muted:#94A3B8; --stars:#FFD700; --donate:#10B981;}
+:root{ --primary:#0047AB; --accent:#FFB800; --bg:#050811; --card:#0B1120; --text:#F8FAFC;}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg); color:var(--text);}
+body{background:var(--bg); color:var(--text); padding-bottom:150px;} /* خليت مسافة للشريط */
+
 header{background:linear-gradient(90deg, var(--primary) 0%, #000 100%); padding:12px 0; border-bottom:3px solid var(--accent); position:sticky; top:0; z-index:999;}
-.wrap{max-width:1600px;margin:auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between; flex-wrap:wrap; gap:10px;}
+.wrap{max-width:1600px;margin:auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between;}
 .logo{font-size:26px;font-weight:900; color:#fff; display:flex; align-items:center; gap:8px;}
 .logo img{width:35px; height:35px;}
-nav a{color:#fff; text-decoration:none; margin:0 8px; font-weight:700;}
-nav a:hover{color:var(--accent);}
-.btn{padding:8px 14px; border-radius:20px; font-weight:900; border:0; cursor:pointer;}
-.btn-stars{background:var(--stars); color:#000;}
-.btn-donate{background:var(--donate); color:#fff;}
 select{background:var(--card); color:var(--text); border:1px solid var(--accent); padding:6px 10px; border-radius:6px;}
-
-/* NEWS TICKER */
-.ticker{background:#000; border-bottom:2px solid var(--accent); padding:8px 0; overflow:hidden;}
-.ticker-wrap{white-space:nowrap; animation:scroll 25s linear infinite;}
-.ticker span{color:var(--accent); font-weight:900; margin-right:50px; font-size:14px;}
-@keyframes scroll{0%{transform:translateX(100%)} 100%{transform:translateX(-100%)}}
 
 .container{max-width:1600px;margin:15px auto;padding:0 15px;display:grid;grid-template-columns:2fr 1fr; gap:15px;}
 .card{background:var(--card); border-radius:10px; padding:15px; border:1px solid #1E293B;}
-.card h3{border-left:4px solid var(--accent); padding-left:10px; margin-bottom:12px; font-size:18px;}
-
-/* SEARCH */
-.search-box{margin-bottom:15px;}
-.search-box input{width:100%; padding:12px; background:#000; border:2px solid var(--accent); color:#fff; border-radius:8px; font-size:14px;}
-.search-box input:focus{outline:none; border-color:var(--stars);}
-
+.card h3{border-left:4px solid var(--accent); padding-left:10px; margin-bottom:12px;}
+.search-box input{width:100%; padding:12px; background:#000; border:2px solid var(--accent); color:#fff; border-radius:8px; margin-bottom:15px;}
 .tours{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; max-height:500px; overflow-y:auto;}
-.tour{background:#0B1120; padding:8px; border-radius:6px; border:1px solid #1E293B; font-size:11px; display:flex; align-items:center; gap:8px;}
+.tour{background:#0B1120; padding:8px; border-radius:6px; border:1px solid #1E293B; font-size:11px; display:flex; align-items:center; gap:8px; cursor:pointer;}
 .tour:hover{border-color:var(--accent);}
+.tour.active{border-color:var(--accent); background:var(--primary);}
 .tour img{width:25px; height:25px;}
-.tour b{color:var(--accent); font-size:12px;}
-.tour span{color:var(--muted);}
-.tour.hide{display:none;}
+.tour b{color:var(--accent);}
 
-.formation{display:grid; grid-template-columns:repeat(5,1fr); gap:6px; background:#000; padding:15px; border-radius:8px; margin-top:10px;}
-.player{width:45px; height:45px; background:var(--primary); border-radius:50%; margin:auto; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:900; border:2px solid var(--accent);}
-.profile{display:flex; align-items:center; gap:10px; background:#0B1120; padding:10px; border-radius:8px; margin-bottom:10px;}
-.profile img{width:50px; height:50px; border-radius:50%;}
-.popup{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;}
-.box{background:var(--card); padding:25px; border-radius:15px; border:2px solid var(--accent); max-width:400px; text-align:center;}
-input{width:100%; padding:10px; margin:8px 0; background:#000; border:1px solid #333; color:#fff; border-radius:6px;}
-[dir="rtl"].card h3{border-left:0; border-right:4px solid var(--accent); padding-left:0; padding-right:10px;}
-[dir="rtl"].ticker-wrap{animation:scroll-rtl 25s linear infinite;}
-@keyframes scroll-rtl{0%{transform:translateX(-100%)} 100%{transform:translateX(100%)}}
+/* الشريط السفلي الجديد */
+.bottom-news{
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 140px;
+background: linear-gradient(180deg, #000 0%, #0B1120 100%);
+border-top: 3px solid var(--accent);
+z-index: 9999;
+padding: 8px;
+}
+.match-header{text-align:center; font-weight:900; color:var(--accent); font-size:14px; margin-bottom:6px;}
+.lineup-row{display:flex; justify-content:space-between; align-items:center;}
+.team-box{width:47%;}
+.team-title{font-size:12px; font-weight:900; text-align:center; color:var(--accent); margin-bottom:5px;}
+.players-line{display:flex; justify-content:center; gap:3px; flex-wrap:wrap;}
+.player-card{width:32px; text-align:center;}
+.player-card img{width:32px; height:32px; border-radius:50%; border:2px solid var(--accent);}
+.player-card span{font-size:7px; display:block; color:var(--muted);}
+.vs-text{font-size:16px; font-weight:900; color:var(--accent);}
 </style>
 </head>
 <body>
 <header>
 <div class="wrap">
 <div class="logo"><img src="https://cdn-icons-png.flaticon.com/512/53/53496.png">GOALPRO</div>
-<nav><a href="#">Home</a><a href="#">Live</a><a href="#">Tables</a></nav>
-<div style="display:flex; gap:8px;">
-<button class="btn btn-stars" onclick="document.getElementById('s').style.display='flex'">⭐ Stars</button>
-<button class="btn btn-donate" onclick="document.getElementById('d').style.display='flex'">💰 Donate</button>
-<select id="lang" onchange="changeLang()">
-<option value="en">English</option><option value="ar">العربية</option><option value="ru">Русский</option><option value="zh">中文</option><option value="hi">हिन्दी</option>
-</select>
-</div>
+<select id="lang"><option value="en">English</option><option value="ar">العربية</option></select>
 </div>
 </header>
-
-<!-- NEWS TICKER -->
-<div class="ticker">
-<div class="ticker-wrap">
-<span>🔥 Messi scores hat-trick in World Cup 2026</span>
-<span>⚽ Ronaldo reaches 900 goals</span>
-<span>🏆 Champions League Final: Real Madrid vs Man City</span>
-<span>💰 Saudi Pro League signs 5 new stars</span>
-<span>📺 Live: Premier League Matchday 1 starts Aug 15</span>
-</div>
-</div>
 
 <div class="container">
 <div>
 <div class="card">
 <h3>🏆 190+ Worldwide Tournaments 2026-2034</h3>
 <div class="search-box">
-<input type="text" id="searchInput" placeholder="Search tournament... ابحث عن بطولة" onkeyup="searchTour()">
+<input type="text" id="searchInput" placeholder="Search tournament..." onkeyup="searchTour()">
 </div>
 <div class="tours" id="toursList"></div>
 </div>
+</div>
+<div>
 <div class="card">
-<h3>⚽ Team Formation 4-3-3</h3>
-<div class="formation">
-<div></div><div class="player">ST</div><div></div><div class="player">ST</div><div></div>
-<div class="player">LM</div><div class="player">CM</div><div class="player">
+<h3>👤 Top Players</h3>
+<div style="display:flex; gap:10px;"><img src="https://randomuser.me/api/portraits/men/32.jpg" width="50" style="border-radius:50%;"><b>Lionel Messi</b></div>
+</div>
+</div>
+</div>
+
+<!-- الشريط السفلي -->
+<div class="bottom-news" id="bottomNews">
+<div class="match-header">Select a tournament to see match lineup</div>
+<div class="lineup-row">
+<div class="team-box">
+<div class="team-title">TEAM A</div>
+<div class="players-line" id="teamA"></div>
+</div>
+<div class="vs-text">VS</div>
+<div class="team-box">
+<div class="team-title">TEAM B</div>
+<div class="players-line" id="teamB"></div>
+</div>
+</div>
+</div>
+
+<script>
+const icon = "https://cdn-icons-png.flaticon.com/512/53/53496.png";
+const playerImg = "https://randomuser.me/api/portraits/men/";
+
+const lineupsData = {
+"ucl": {match: "Real Madrid vs Barcelona | UCL Final", a:["GK","RB","CB","CB","LB","CM","CM","RW","ST","ST","LW"], b:["GK","RB","CB","CB","LB","CM","CM","CM","RW","ST","LW"]},
+"premier league": {match: "Arsenal vs Man City | EPL", a:["GK","RB","CB","CB","LB","CM","CM","CM","RW","ST","LW"], b:["GK","RB","CB","CB","LB","CM","CM","RW","ST","ST","LW"]},
+"world cup 2026": {match: "Brazil vs Argentina | WC2026", a:["GK","RB","CB","CB","LB","CM","CM","CM","RW","ST","LW"], b:["GK","RB","CB","CB","LB","CM","CM","RW","ST","ST","LW"]},
+"default": {match: "Select a tournament", a:[], b:[]}
+};
+
+const tournaments = [
+["UCL","UEFA Champions League","Europe","36 Teams"],["Premier League","England","20 Teams"],["World Cup 2026","FIFA","48 Teams"]
+];
+for(let i=1; i<=187; i++){ tournaments.push([`League ${i}`,"Worldwide",`${16 + i%10} Teams`]); }
+
+const list = document.getElementById('toursList');
+tournaments.forEach(t=>{
+list.innerHTML += `<div class="tour" data-name="${t[0].toLowerCase()}" onclick="showLineup('${t[0].toLowerCase()}')">
+<img src="${icon}"><div><b>${t[0]}</b><br><span>${t[1]} • ${t[2]}</span></div></div>`;
+});
+
+function showLineup(name){
+document.querySelectorAll('.tour').forEach(t=>t.classList.remove('active'));
+event.currentTarget.classList.add('active');
+let data = lineupsData[name] || lineupsData["default"];
+document.querySelector('.match-header').innerText = data.match;
+document.getElementById('teamA').innerHTML = "";
+document.getElementById('teamB').innerHTML = "";
+data.a.forEach((pos,i)=>{document.getElementById('teamA').innerHTML += `<div class="player-card"><img src="${playerImg}${i+1}.jpg"><span>${pos}</span></div>`;});
+data.b.forEach((pos,i)=>{document.getElementById('teamB').innerHTML += `<div class="player-card"><img src="${playerImg}${i+11}.jpg"><span>${pos}</span></div>`;});
+}
+
+function searchTour(){
+let input = document.getElementById('searchInput').value.toLowerCase();
+document.querySelectorAll('.tour').forEach(t=>{
+t.style.display = t.dataset.name.includes(input)? "flex" : "none";
+});
+}
+</script>
+</body>
+</html>
