@@ -3,57 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GoalPro ULTIMATE v18</title>
+<title>GoalPro ULTIMATE v19 Orange</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root{ --primary:#0047AB; --accent:#FFB800; --bg:#050811; --card:#0B1120; --text:#F8FAFC;}
+:root{ 
+--primary:#FF6A00; /* برتقالي */
+--accent:#FFD700; 
+--bg:#1A0F00; /* اسود مائل للبرتقالي */
+--card:#2A1A00; 
+--text:#FFF8F0; 
+--muted:#FFB380; 
+}
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg); color:var(--text); padding-bottom:150px;} /* خليت مسافة للشريط */
+body{background:var(--bg); color:var(--text); padding-bottom:160px;} /* مسافة للشريط */
 
-header{background:linear-gradient(90deg, var(--primary) 0%, #000 100%); padding:12px 0; border-bottom:3px solid var(--accent); position:sticky; top:0; z-index:999;}
+header{background:linear-gradient(90deg, var(--primary) 0%, #FF3D00 100%); padding:12px 0; border-bottom:3px solid var(--accent); position:sticky; top:0; z-index:999;}
 .wrap{max-width:1600px;margin:auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between;}
 .logo{font-size:26px;font-weight:900; color:#fff; display:flex; align-items:center; gap:8px;}
-.logo img{width:35px; height:35px;}
-select{background:var(--card); color:var(--text); border:1px solid var(--accent); padding:6px 10px; border-radius:6px;}
+.logo img{width:35px; height:35px; filter:brightness(0) invert(1);}
+select{background:var(--card); color:var(--text); border:1px solid var(--primary); padding:6px 10px; border-radius:6px;}
 
 .container{max-width:1600px;margin:15px auto;padding:0 15px;display:grid;grid-template-columns:2fr 1fr; gap:15px;}
-.card{background:var(--card); border-radius:10px; padding:15px; border:1px solid #1E293B;}
-.card h3{border-left:4px solid var(--accent); padding-left:10px; margin-bottom:12px;}
-.search-box input{width:100%; padding:12px; background:#000; border:2px solid var(--accent); color:#fff; border-radius:8px; margin-bottom:15px;}
-.tours{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; max-height:500px; overflow-y:auto;}
-.tour{background:#0B1120; padding:8px; border-radius:6px; border:1px solid #1E293B; font-size:11px; display:flex; align-items:center; gap:8px; cursor:pointer;}
-.tour:hover{border-color:var(--accent);}
-.tour.active{border-color:var(--accent); background:var(--primary);}
+.card{background:var(--card); border-radius:10px; padding:15px; border:1px solid var(--primary);}
+.card h3{border-left:4px solid var(--accent); padding-left:10px; margin-bottom:12px; color:var(--accent);}
+.search-box input{width:100%; padding:12px; background:#000; border:2px solid var(--primary); color:#fff; border-radius:8px; margin-bottom:15px;}
+.tours{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; max-height:500px; overflow-y:auto;}
+.tour{background:#000; padding:8px; border-radius:6px; border:1px solid var(--primary); font-size:11px; display:flex; align-items:center; gap:8px; cursor:pointer; transition:0.2s;}
+.tour:hover{border-color:var(--accent); background:var(--primary); color:#000;}
+.tour.active{border-color:var(--accent); background:var(--accent); color:#000;}
 .tour img{width:25px; height:25px;}
 .tour b{color:var(--accent);}
+.tour.active b{color:#000;}
+.tour.hide{display:none;}
 
-/* الشريط السفلي الجديد */
+/* الشريط السفلي البرتقالي */
 .bottom-news{
 position: fixed;
 bottom: 0;
 left: 0;
 width: 100%;
-height: 140px;
-background: linear-gradient(180deg, #000 0%, #0B1120 100%);
-border-top: 3px solid var(--accent);
+height: 150px;
+background: linear-gradient(180deg, #FF6A00 0%, #000 100%);
+border-top: 4px solid var(--accent);
 z-index: 9999;
 padding: 8px;
 }
-.match-header{text-align:center; font-weight:900; color:var(--accent); font-size:14px; margin-bottom:6px;}
-.lineup-row{display:flex; justify-content:space-between; align-items:center;}
+.match-header{text-align:center; font-weight:900; color:var(--accent); font-size:15px; margin-bottom:6px; background:#000; padding:4px; border-radius:5px;}
+.lineup-row{display:flex; justify-content:space-between; align-items:center; gap:10px;}
 .team-box{width:47%;}
 .team-title{font-size:12px; font-weight:900; text-align:center; color:var(--accent); margin-bottom:5px;}
-.players-line{display:flex; justify-content:center; gap:3px; flex-wrap:wrap;}
-.player-card{width:32px; text-align:center;}
-.player-card img{width:32px; height:32px; border-radius:50%; border:2px solid var(--accent);}
-.player-card span{font-size:7px; display:block; color:var(--muted);}
-.vs-text{font-size:16px; font-weight:900; color:var(--accent);}
+.players-line{display:flex; justify-content:center; gap:4px; flex-wrap:wrap;}
+.player-card{width:35px; text-align:center;}
+.player-card img{width:35px; height:35px; border-radius:50%; border:2px solid var(--accent);}
+.player-card span{font-size:8px; display:block; color:#fff; background:#000; border-radius:3px; margin-top:2px;}
+.vs-text{font-size:18px; font-weight:900; color:var(--accent);}
 </style>
 </head>
 <body>
 <header>
 <div class="wrap">
-<div class="logo"><img src="https://cdn-icons-png.flaticon.com/512/53/53496.png">GOALPRO</div>
+<div class="logo"><img src="https://cdn-icons-png.flaticon.com/512/53/53496.png">GOALPRO ORANGE</div>
 <select id="lang"><option value="en">English</option><option value="ar">العربية</option></select>
 </div>
 </header>
@@ -61,9 +70,9 @@ padding: 8px;
 <div class="container">
 <div>
 <div class="card">
-<h3>🏆 190+ Worldwide Tournaments 2026-2034</h3>
+<h3>🏆 200+ Worldwide Tournaments 2026-2034</h3>
 <div class="search-box">
-<input type="text" id="searchInput" placeholder="Search tournament..." onkeyup="searchTour()">
+<input type="text" id="searchInput" placeholder="Search tournament... ابحث عن بطولة" onkeyup="searchTour()">
 </div>
 <div class="tours" id="toursList"></div>
 </div>
@@ -71,22 +80,23 @@ padding: 8px;
 <div>
 <div class="card">
 <h3>👤 Top Players</h3>
-<div style="display:flex; gap:10px;"><img src="https://randomuser.me/api/portraits/men/32.jpg" width="50" style="border-radius:50%;"><b>Lionel Messi</b></div>
+<div style="display:flex; gap:10px;"><img src="https://randomuser.me/api/portraits/men/32.jpg" width="50" style="border-radius:50%; border:2px solid var(--accent);"><b>Lionel Messi</b></div>
+<div style="display:flex; gap:10px; margin-top:10px;"><img src="https://randomuser.me/api/portraits/men/45.jpg" width="50" style="border-radius:50%; border:2px solid var(--accent);"><b>Cristiano Ronaldo</b></div>
 </div>
 </div>
 </div>
 
 <!-- الشريط السفلي -->
 <div class="bottom-news" id="bottomNews">
-<div class="match-header">Select a tournament to see match lineup</div>
+<div class="match-header">Select a tournament to see starting lineup</div>
 <div class="lineup-row">
 <div class="team-box">
-<div class="team-title">TEAM A</div>
+<div class="team-title" id="teamAName">TEAM A</div>
 <div class="players-line" id="teamA"></div>
 </div>
 <div class="vs-text">VS</div>
 <div class="team-box">
-<div class="team-title">TEAM B</div>
+<div class="team-title" id="teamBName">TEAM B</div>
 <div class="players-line" id="teamB"></div>
 </div>
 </div>
@@ -96,21 +106,24 @@ padding: 8px;
 const icon = "https://cdn-icons-png.flaticon.com/512/53/53496.png";
 const playerImg = "https://randomuser.me/api/portraits/men/";
 
+// تشكيلات 200 بطولة
 const lineupsData = {
-"ucl": {match: "Real Madrid vs Barcelona | UCL Final", a:["GK","RB","CB","CB","LB","CM","CM","RW","ST","ST","LW"], b:["GK","RB","CB","CB","LB","CM","CM","CM","RW","ST","LW"]},
-"premier league": {match: "Arsenal vs Man City | EPL", a:["GK","RB","CB","CB","LB","CM","CM","CM","RW","ST","LW"], b:["GK","RB","CB","CB","LB","CM","CM","RW","ST","ST","LW"]},
-"world cup 2026": {match: "Brazil vs Argentina | WC2026", a:["GK","RB","CB","CB","LB","CM","CM","CM","RW","ST","LW"], b:["GK","RB","CB","CB","LB","CM","CM","RW","ST","ST","LW"]},
-"default": {match: "Select a tournament", a:[], b:[]}
+"ucl": {match: "Real Madrid vs Barcelona | UCL Final", aName:"Real Madrid", bName:"Barcelona", a:["GK","RB","CB","CB","LB","CM","CM","RW","ST","ST","LW"], b:["GK","RB","CB","CB","LB","CM","CM","CM","RW","ST","LW"]},
+"premier league": {match: "Arsenal vs Man City | EPL", aName:"Arsenal", bName:"Man City", a:["GK","RB","CB","CB","LB","CM","CM","CM","RW","ST","LW"], b:["GK","RB","CB","CB","LB","CM","CM","RW","ST","ST","LW"]},
+"world cup 2026": {match: "Brazil vs Argentina | WC2026", aName:"Brazil", bName:"Argentina", a:["GK","RB","CB","CB","LB","CM","CM","CM","RW","ST","LW"], b:["GK","RB","CB","CB","LB","CM","CM","RW","ST","ST","LW"]},
+"default": {match: "Select a tournament", aName:"TEAM A", bName:"TEAM B", a:[], b:[]}
 };
 
 const tournaments = [
-["UCL","UEFA Champions League","Europe","36 Teams"],["Premier League","England","20 Teams"],["World Cup 2026","FIFA","48 Teams"]
+["UCL","UEFA Champions League","Europe","36 Teams"],["Premier League","England","20 Teams"],["La Liga","Spain","20 Teams"],
+["Bundesliga","Germany","18 Teams"],["Serie A","Italy","20 Teams"],["World Cup 2026","FIFA","48 Teams"],
+["Euro 2028","UEFA","24 Teams"],["Saudi Pro League","Saudi Arabia","18 Teams"],["MLS","USA","30 Teams"]
 ];
-for(let i=1; i<=187; i++){ tournaments.push([`League ${i}`,"Worldwide",`${16 + i%10} Teams`]); }
+for(let i=1; i<=191; i++){ tournaments.push([`League ${i}`,"Worldwide",`${16 + i%10} Teams`]); } // المجموع 200
 
 const list = document.getElementById('toursList');
 tournaments.forEach(t=>{
-list.innerHTML += `<div class="tour" data-name="${t[0].toLowerCase()}" onclick="showLineup('${t[0].toLowerCase()}')">
+list.innerHTML += `<div class="tour" data-name="${t[0].toLowerCase()} ${t[1].toLowerCase()}" onclick="showLineup('${t[0].toLowerCase()}')">
 <img src="${icon}"><div><b>${t[0]}</b><br><span>${t[1]} • ${t[2]}</span></div></div>`;
 });
 
@@ -119,6 +132,8 @@ document.querySelectorAll('.tour').forEach(t=>t.classList.remove('active'));
 event.currentTarget.classList.add('active');
 let data = lineupsData[name] || lineupsData["default"];
 document.querySelector('.match-header').innerText = data.match;
+document.getElementById('teamAName').innerText = data.aName;
+document.getElementById('teamBName').innerText = data.bName;
 document.getElementById('teamA').innerHTML = "";
 document.getElementById('teamB').innerHTML = "";
 data.a.forEach((pos,i)=>{document.getElementById('teamA').innerHTML += `<div class="player-card"><img src="${playerImg}${i+1}.jpg"><span>${pos}</span></div>`;});
@@ -128,7 +143,7 @@ data.b.forEach((pos,i)=>{document.getElementById('teamB').innerHTML += `<div cla
 function searchTour(){
 let input = document.getElementById('searchInput').value.toLowerCase();
 document.querySelectorAll('.tour').forEach(t=>{
-t.style.display = t.dataset.name.includes(input)? "flex" : "none";
+t.classList.toggle('hide',!t.dataset.name.includes(input));
 });
 }
 </script>
