@@ -1,39 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GoalPro ULTIMATE v19 Orange</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-:root{ 
---primary:#FF6A00; /* برتقالي */
---accent:#FFD700; 
---bg:#1A0F00; /* اسود مائل للبرتقالي */
---card:#2A1A00; 
---text:#FFF8F0; 
---muted:#FFB380; 
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
-body{background:var(--bg); color:var(--text); padding-bottom:160px;} /* مسافة للشريط */
-
-header{background:linear-gradient(90deg, var(--primary) 0%, #FF3D00 100%); padding:12px 0; border-bottom:3px solid var(--accent); position:sticky; top:0; z-index:999;}
-.wrap{max-width:1600px;margin:auto;padding:0 15px;display:flex;align-items:center;justify-content:space-between;}
-.logo{font-size:26px;font-weight:900; color:#fff; display:flex; align-items:center; gap:8px;}
-.logo img{width:35px; height:35px; filter:brightness(0) invert(1);}
-select{background:var(--card); color:var(--text); border:1px solid var(--primary); padding:6px 10px; border-radius:6px;}
-
-.container{max-width:1600px;margin:15px auto;padding:0 15px;display:grid;grid-template-columns:2fr 1fr; gap:15px;}
-.card{background:var(--card); border-radius:10px; padding:15px; border:1px solid var(--primary);}
-.card h3{border-left:4px solid var(--accent); padding-left:10px; margin-bottom:12px; color:var(--accent);}
-.search-box input{width:100%; padding:12px; background:#000; border:2px solid var(--primary); color:#fff; border-radius:8px; margin-bottom:15px;}
-.tours{display:grid; grid-template-columns:repeat(5,1fr); gap:8px; max-height:500px; overflow-y:auto;}
-.tour{background:#000; padding:8px; border-radius:6px; border:1px solid var(--primary); font-size:11px; display:flex; align-items:center; gap:8px; cursor:pointer; transition:0.2s;}
-.tour:hover{border-color:var(--accent); background:var(--primary); color:#000;}
-.tour.active{border-color:var(--accent); background:var(--accent); color:#000;}
-.tour img{width:25px; height:25px;}
-.tour b{color:var(--accent);}
-.tour.active b{color:#000;}
 .tour.hide{display:none;}
 
 /* الشريط السفلي البرتقالي */
