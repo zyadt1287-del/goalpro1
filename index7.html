@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>GOALPRO ORANGE</title>
+  <script src="https://unpkg.com/@walletconnect/client@1.8.0/dist/umd/index.min.js"></script>
+  <style>
+    body {background: #000; color: #fff; text-align: center; padding: 20px; font-family: 'Cairo'}
+  .header {background: linear-gradient(90deg, #FF8C00, #FF4500); padding: 20px; border-radius: 15px; margin-bottom: 20px;}
+  .btn {background: linear-gradient(90deg, #FF8C00, #FF4500); color: #fff; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold; border-radius: 12px; cursor: pointer; margin: 10px; width: 80%;}
+  .btn-buy {background: #00FF00; color:#000;}
+  .price {font-size: 24px; color: #00FF00; font-weight: bold;}
+   .tournaments {text-align: right; margin: 20px;}
+   .tournaments li {background: #111; padding: 10px; margin: 5px; border-radius: 8px;}
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🏆 GOALPRO ORANGE</h1>
+    <p>200+ Worldwide Tournaments 2026-2034</p>
+    <p class="price">الاشتراك السنوي: 50 USDT TRC20</p>
+  </div>
+
+  <div class="tournaments">
+    <h3>🔍 ابحث عن بطولة:</h3>
+    <ul>
+      <li>UCL UEFA Champions League • Europe</li>
+      <li>Premier League England • 20 Teams</li>
+      <li>La Liga Spain • 20 Teams</li>
+      <li>Bundesliga Germany • 18 Teams</li>
+      <li>Serie A Italy • 20 Teams</li>
+      <li>World Cup 2026 FIFA • 48 Teams</li>
+      <li>Euro 2028 UEFA • 24 Teams</li>
+    </ul>
+  </div>
+
+  <button class="btn" id="connectBtn">🔗 ربط Trust Wallet</button>
+  <button class="btn btn-buy" id="buyBtn" style="display:none">💳 اشترك الان - 50 USDT</button>
+
+  <div id="walletAddress" style="color:#00FF00; margin-top:10px"></div>
+  <div id="status" style="margin-top:10px; color:#FF8C00"></div>
+
+  <script>
+    let connector;
+    const MY_WALLET = "THYnJNJ5K49Hk5iACQvSXfgkyj5cLGceoq";
+    const USDT_CONTRACT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
+
+    document.getElementById('connectBtn').onclick = async () => {
+      connector = new WalletConnect.default({ bridge: "https://bridge.walletconnect.org" });
+      if (!connector.connected) await connector.createSession();
+      alert('1. افتح Trust Wallet\n2. Settings > WalletConnect > New Connection > Scan\n3. امسح الشاشة');
+
+      connector.on("connect", (error, payload) => {
+        if(error) return;
+        const address = payload.params[0].accounts[0];
+        document.getElementById('walletAddress').innerText = `✅ متصل: ${address}`;
+        document.getElementById('connectBtn').innerText = '✅ متصل';
+        document.getElementById('buyBtn').style.display = 'block';
+      });
+    };
+
+    document.getElementById('buyBtn').onclick = async () => {
+      document.getElementById('status').innerText = "جاري ارسال طلب الدفع للموافقة...";
+      const amount = 50 * 1000000;
+
+      connector.sendCustomRequest({
+        method: "tron_sendTransaction",
+        params: [{
+          to: MY_WALLET,
+          contractAddress: USDT_CONTRACT,
+          amount: amount
+        }]
+      }).then(() => {
+        document.getElementById('status').innerText = "✅ تم الدفع بنجاح! مرحبا بك في GOALPRO ORANGE";
+      }).catch(err => {
+        document.getElementById('status').innerText = "❌ تم الغاء الدفع";
+      });
+    };
+  </script>
+</body>
+</html>
